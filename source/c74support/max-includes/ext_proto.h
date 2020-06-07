@@ -798,7 +798,7 @@ void *outlet_float(void *o, double f);
 
 	@ingroup inout
 	@param	o		Outlet that will send the message.
-	@param	s		Should be NULL, but can be the _sym_list.
+	@param	s		Should be the symbol "list".
 	@param	ac		Number of elements in the list in argv. 
 	@param	av		Atoms constituting the list. 
 	@return			Returns 0 if a stack overflow occurred, otherwise returns 1.
@@ -806,22 +806,23 @@ void *outlet_float(void *o, double f);
 	@remark			outlet_list() sends the list specified by argv and argc out the 
 					specified outlet. The outlet must have been created with listout or 
 					outlet_new in your object creation function (see above). You create 
-					the list as an array of Atoms, but the first item in the list must be an 
+					the list as an array of atoms, but the first item in the list should be an
 					integer or float.
 					
 					Here's an example of sending a list of three numbers. 
 	@code
-	t_atom myList[3]; 
-	long theNumbers[3]; 
-	short i; 
+	t_atom  myList[3];
+	long    theNumbers[3];
+	short   i;
 	
 	theNumbers[0] = 23; 
 	theNumbers[1] = 12; 
 	theNumbers[2] = 5;
+
 	for (i=0; i < 3; i++) { 
-		atom_setlong(myList+i,theNumbers[i]);
+		atom_setlong(myList+i, theNumbers[i]);
 	} 
-	outlet_list(myOutlet,0L,3,&myList); 
+	outlet_list(myOutlet, 0L, 3, myList);
 	@endcode
 
 	@remark			It's not a good idea to pass large lists to outlet_list that are 
