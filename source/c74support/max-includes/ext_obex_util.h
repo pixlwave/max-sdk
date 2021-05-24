@@ -10,6 +10,8 @@
 
 BEGIN_USING_C_LINKAGE
 
+#include <stdarg.h>
+
 // symbol macros which may be swapped to use common symbol pointers for performance
 #ifndef USESYM
 #define USESYM(x)	gensym(#x)
@@ -2106,7 +2108,7 @@ long atomisstring(const t_atom *a);
 	@param		a				The address of the atom to test.
 	@return		Returns true if the #t_atom contains a valid #t_atomarray object.
 */
-long atomisatomarray(t_atom *a);
+long atomisatomarray(const t_atom *a);
 
 
 /**
@@ -2116,7 +2118,7 @@ long atomisatomarray(t_atom *a);
 	@param		a				The address of the atom to test.
 	@return		Returns true if the #t_atom contains a valid #t_dictionary object.
 */
-long atomisdictionary(t_atom *a);
+long atomisdictionary(const t_atom *a);
 
 
 // quick object programming macros
